@@ -1,0 +1,85 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="description" content="Vipera Privacy Policy — what the app accesses, stores, and sends.">
+<title>Vipera — Privacy Policy</title>
+<link rel="stylesheet" href="styles.css">
+<style>
+  .legal-page { padding-top: 150px; padding-bottom: 110px; max-width: 820px; }
+  .legal-page .eyebrow { color: var(--green); }
+  .legal-page h1 { font-size: clamp(48px, 7vw, 80px); margin-bottom: 20px; }
+  .legal-page h1 em { color: var(--green); font-style: normal; font-weight: 400; }
+  .legal-page .legal-intro { max-width: 680px; color: var(--muted); line-height: 1.8; margin-bottom: 28px; }
+  .legal-page h2 { font-size: 28px; color: var(--green); margin: 48px 0 15px; }
+  .legal-page h3 { font-size: 17px; margin: 27px 0 8px; }
+  .legal-page p, .legal-page li { color: #52645a; line-height: 1.78; font-size: 14px; }
+  .legal-page ul, .legal-page ol { padding-left: 22px; }
+  .legal-page table { width: 100%; border-collapse: collapse; margin: 15px 0 20px; font-size: 13px; }
+  .legal-page th, .legal-page td { text-align: left; vertical-align: top; padding: 11px 10px; border-bottom: 1px solid var(--line); }
+  .legal-page th { color: var(--green); font: 10px var(--mono); letter-spacing: .1em; text-transform: uppercase; }
+  .legal-meta { padding: 16px 18px; background: var(--paper-deep); border-left: 3px solid var(--acid); font: 11px var(--mono); color: var(--green); }
+  @media (max-width: 620px) { .legal-page { padding-top: 115px; }.legal-page table { display: block; overflow-x: auto; white-space: nowrap; } }
+</style>
+</head>
+<body>
+<a class="skip-link" href="#main">Skip to content</a>
+<header class="site-header" data-header>
+  <a class="brand" href="index.html" aria-label="Vipera home"><span class="brand-mark" aria-hidden="true"><span></span><span></span><span></span></span><span>VIPERA</span></a>
+  <button class="menu-toggle" type="button" aria-expanded="false" aria-controls="site-nav" data-menu-toggle><span></span><span></span><span></span><span class="sr-only">Toggle navigation</span></button>
+  <nav id="site-nav" class="site-nav" aria-label="Main navigation"><a href="index.html#protection">Protection</a><a href="index.html#how-it-works">How it works</a><a href="index.html#premium">Premium</a><a href="privacy.html">Privacy</a><a class="nav-cta" href="index.html#download">Get Vipera <span>↗</span></a></nav>
+</header>
+<main id="main" class="section-shell legal-page">
+  <p class="eyebrow">The practical details</p>
+  <h1>Privacy, made <em>clear.</em></h1>
+  <p class="legal-intro">Vipera ("we", "us", "the app") is an Android security tool that checks APKs in shared storage, reviews user-installed apps, and looks up known threat hashes. It does not inspect every file type or guarantee detection of every threat. This policy describes what information Vipera accesses, stores, and sends to the network — and the controls available to you.</p>
+  <p class="legal-meta"><strong>Last updated:</strong> 10 October 2026</p>
+  <h2>1. Account &amp; sign-up</h2>
+  <p>Vipera does not ask you to create an account, provide an email address, or choose a username. To securely call Vipera's cloud features, the app may create an anonymous Supabase authentication session tied to that installation. This session is not intended to identify you by name or email, but it is used to associate lookup limits, scan requests, Premium entitlements, and promo redemptions with the installation's anonymous account. Session tokens are stored in the app's private storage and can be removed by clearing app storage or uninstalling Vipera.</p>
+  <p>In-app purchases are processed by Google Play Billing; Vipera does not see or store your payment card, billing address, or Google account details. Google Play may provide purchase verification data needed to activate Premium.</p>
+  <h2>2. Permissions Vipera requests</h2>
+  <table><thead><tr><th>Permission</th><th>OS version</th><th>Reason</th></tr></thead><tbody>
+    <tr><td><code>INTERNET</code></td><td>all</td><td>Reach Vipera backend (supabase.co) which queries MalwareBazaar, YARAify/ThreatFox (abuse.ch), AlienVault OTX* and MetaDefender* (*premium) and NVIDIA* verification. Declared in AndroidManifest.xml:5.</td></tr>
+    <tr><td><code>MANAGE_EXTERNAL_STORAGE</code></td><td>API 30+</td><td>Locate and hash .apk and EICAR test files in shared storage (/sdcard) to look up known threat hashes. Core AV use. Declared AndroidManifest.xml:6.</td></tr>
+    <tr><td><code>READ_EXTERNAL_STORAGE</code></td><td>API ≤29</td><td>Same as above for Android 10 and below. maxSdkVersion 29. Declared AndroidManifest.xml:7.</td></tr>
+    <tr><td><code>QUERY_ALL_PACKAGES</code></td><td>API 30+</td><td>Enumerate installed apps for App Manager and Deep tier / App Shield. Not analytics. Declared AndroidManifest.xml:14 with tools:ignore.</td></tr>
+    <tr><td><code>POST_NOTIFICATIONS</code></td><td>API 33+</td><td>Show scan-completion and App Shield / Real-time Guard install alerts. Declared AndroidManifest.xml:17.</td></tr>
+    <tr><td><code>FOREGROUND_SERVICE</code> + <code>FOREGROUND_SERVICE_DATA_SYNC</code></td><td>API 28+/34+</td><td>Run long scans and Real-time Guard (Download FileObserver + package install) as visible foreground dataSync. Declared AndroidManifest.xml:18-19.</td></tr>
+    <tr><td><code>com.android.vending.BILLING</code></td><td>all</td><td>Google Play Billing for Premium. Declared AndroidManifest.xml:20.</td></tr>
+    <tr><td><code>com.google.android.gms.permission.AD_ID</code></td><td>all</td><td>AdMob rewarded interstitial for one-time Premium Deep scans. Declared AndroidManifest.xml:21.</td></tr>
+    <tr><td><code>ACCESS_WIFI_STATE</code> + <code>NEARBY_WIFI_DEVICES</code> (+ location on older Android)</td><td>API 29+/33+</td><td>Wi-Fi Security tool lists nearby networks and their security type on-device; no location is stored or transmitted. NEARBY_WIFI_DEVICES uses neverForLocation on Android 13+.</td></tr>
+    <tr><td><code>CALL_SCREENING</code> role</td><td>API 29+</td><td>Call Guard screens incoming calls only after you explicitly grant the caller-ID &amp; spam role; block/trust lists stay on-device. Bound via BIND_SCREENING_SERVICE.</td></tr>
+  </tbody></table>
+  <p>Permissions are explained before they are requested. You can deny or revoke permissions through Android Settings; Vipera will continue in a reduced-capacity mode where possible.</p>
+  <h2>3. What Vipera stores on your device</h2>
+  <p>Vipera stores scan summaries, onboarding state, protection toggles, and a Premium state cache in app-private storage. This data is scoped to your install and is erased when you uninstall the app or clear its storage.</p>
+  <p>We do not store your name, email, phone number, contacts list, location history, photo library contents, or an identifier cross-linkable to you across apps.</p>
+  <h2>4. What Vipera sends over the network</h2>
+  <p>Hash-only threat lookups go through the Supabase threat-lookup edge function (quota-limited): Vipera sends only the file's SHA-256 hash, which the backend checks against MalwareBazaar, YARAify and ThreatFox (abuse.ch), AlienVault OTX, and MetaDefender Cloud. File contents are never uploaded as part of a hash lookup.</p>
+  <p>URL lookups go through the Supabase url-lookup edge function, which checks URLhaus and, when configured, Google Safe Browsing (free tier). Breach checks go through the Supabase breach-check edge function, which queries Have I Been Pwned (when configured) or XposedOrNot (free) server-side using only the normalized email address.</p>
+  <p>When you use the fake-app review tool, Vipera sends a limited list of installed-app labels, package names, permissions, and accessibility-use indicators to the backend for optional classification. The app does not send APK or personal-file contents for these features.</p>
+  <p>Vipera does not include analytics or crash-reporting SDKs. The free version shows ads through Google AdMob; Google may use your device's advertising ID for ads according to the consent choices you make in Google's consent form (shown where required) and Google's own policies. You can reset or delete the advertising ID in Android Settings. Cloud requests require the anonymous session described above.</p>
+  <h3>Device check (Google Play Integrity)</h3>
+  <p>To stop free scan quotas and promo codes from being abused with throwaway accounts, Vipera asks Google Play Integrity to confirm that requests come from the genuine Vipera app installed from Google Play on a device that passes Google's integrity checks. Along with Google's signed result, the app sends a <strong>device key</strong>: a one-way SHA-256 hash of Android's app-specific device identifier (ANDROID_ID) combined with Vipera's package name. The original identifier is never sent, and the key is different for every app, so it cannot be used to track you across apps.</p>
+  <p>Vipera's backend never stores the device key as received: it keeps only a keyed hash of it (HMAC with a server-side secret), together with the integrity result (pass or the failure reason), the check time, and when it expires. This is used only for fraud prevention and to apply free-use limits and promo-code limits per device. It is not used for advertising or analytics and is not shared with third parties.</p>
+  <h2>5. Security activity logs</h2>
+  <p>Vipera records privacy-preserving security activity summaries associated with the app's anonymous installation session so the owner can monitor service health across devices. Scan logs contain aggregate counts, scan type, result status, app version, device model, and timestamp; they do not contain file contents, file paths, file names, or file hashes. Fake-app, URL, and threat-lookup activity is retained as limited security metadata. These records are restricted by database access controls to the authorized owner account and are automatically deleted after 90 days.</p>
+  <h2>6. International transfers</h2>
+  <p>Third-party providers may operate servers in the United States, European Union, or other jurisdictions. Review their own policies for details about their processing and data residency.</p>
+  <h2>7. Data retention</h2>
+  <p>On-device data remains until you uninstall Vipera, clear app storage, or wipe the device. Vipera's backend stores account-associated threat lookups, URL lookups, fake-app scan summaries, Premium entitlement records, and promo redemption records to provide those features and enforce limits. Scheduled retention cleanup removes threat and URL lookup records older than 90 days; entitlement and redemption records may be retained while needed for billing, fraud prevention, support, and accounting. The hashed device key is kept with the device-check record until you delete your data or the anonymous account is removed; daily per-device usage counters hold only the hashed key and a count and are deleted after 7 days; a promo redemption may keep the hashed key so the same device cannot redeem a code twice. Third-party providers may retain request metadata according to their own terms. Vipera does not sell personal information.</p>
+  <h2>8. Your controls</h2>
+  <ul><li>Revoke permissions in Android Settings.</li><li>Clear Vipera storage to erase local history, settings, and the anonymous session on that device.</li><li>Disable auto-scan, File Guard, or App Shield in the app.</li><li>Withdraw consent for cloud threat lookups, or delete your data, at any time in Vipera's Settings. Deleting your data removes the anonymous account together with its lookups, scan summaries, device-check record and usage counters from Vipera's backend.</li><li>Contact us with privacy questions or requests. We can explain the available process for reviewing or deleting backend records associated with your anonymous session; we may need limited information to locate the correct records.</li></ul>
+  <h3 id="delete-data">How to delete your Vipera data</h3>
+  <ol><li>Open <strong>Vipera: Mobile Security</strong> and go to <strong>Settings</strong>.</li><li>Tap <strong>Delete my data</strong> and confirm.</li></ol>
+  <p>This permanently deletes the anonymous account from Vipera's backend together with its threat and URL lookups, scan summaries, fake-app review results, breach-check history, device-check record (hashed device key), usage counters, and promo redemptions, and clears the session on your device. Google Play purchase records are kept by Google, and an active subscription must be cancelled in Google Play; after deletion, Premium can be restored with Restore purchases. Per-device daily usage counters that hold only a hashed device key and a count are removed automatically within 7 days. If you can no longer open the app, email <a href="mailto:softwareblankcanvas@gmail.com">softwareblankcanvas@gmail.com</a> and we will explain how we can locate and delete the records.</p>
+  <h2>9. Changes to this policy</h2>
+  <p>We will update this page when material data practices change and revise the date above.</p>
+  <h2>10. Contact us</h2>
+  <p>For privacy questions or data-flow explanations, email <a href="mailto:softwareblankcanvas@gmail.com">softwareblankcanvas@gmail.com</a>.</p>
+</main>
+<footer class="site-footer section-shell"><div class="footer-top"><a class="brand" href="index.html"><span class="brand-mark" aria-hidden="true"><span></span><span></span><span></span></span><span>VIPERA</span></a><p>Quiet security for everyday Android.</p></div><div class="footer-bottom"><span>© 2026 BlankCanvas Software</span><nav aria-label="Legal navigation"><a href="privacy.html">Privacy Policy</a><a href="terms.html">Terms of Service</a><a href="app-ads.txt">app-ads.txt</a><a href="mailto:softwareblankcanvas@gmail.com">Contact</a></nav></div></footer>
+<script src="script.js"></script>
+</body>
+</html>
